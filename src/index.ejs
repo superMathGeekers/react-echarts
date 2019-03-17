@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="zh-CN" <% if(htmlWebpackPlugin.files.manifest) { %> manifest="<%= htmlWebpackPlugin.files.manifest %>"<% } %>>
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="renderer" content="webkit" />
+    <meta name="description" content="">
+    <meta name="keyword" content="">
+    <link rel="dns-prefetch" href="#" />
+
+    <% if (htmlWebpackPlugin.files.favicon) { %>
+    <link rel="shortcut icon" href="<%= htmlWebpackPlugin.files.favicon%>">
+    <% } %>
+
+    <% if (htmlWebpackPlugin.options.mobile) { %>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <% } %>
+
+    <title><%= htmlWebpackPlugin.options.title || 'Webpack App'%></title>
+</head>
+    <body>
+        <% if (htmlWebpackPlugin.options.unsupportedBrowser) { %>
+        <style>.unsupported-browser { display: none; }</style>
+        <div class="unsupported-browser">
+        Sorry, your browser is not supported.  Please upgrade to
+        the latest version or switch your browser to use this site.
+        See <a href="http://outdatedbrowser.com/">outdatedbrowser.com</a>
+        for options.
+        </div>
+        <% } %>
+
+        <% if (htmlWebpackPlugin.options.appMountId) { %>
+        <div id="<%= htmlWebpackPlugin.options.appMountId%>"></div>
+        <% } %>
+
+        <% if (htmlWebpackPlugin.options.appMountIds && htmlWebpackPlugin.options.appMountIds.length > 0) { %>
+        <% for (var index in htmlWebpackPlugin.options.appMountIds) { %>
+        <div id="<%= htmlWebpackPlugin.options.appMountIds[index]%>"></div>
+        <% } %>
+        <% } %>
+
+        <% if (htmlWebpackPlugin.options.googleAnalytics) { %>
+        <script>
+        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+            m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+        <% if (htmlWebpackPlugin.options.googleAnalytics.trackingId) { %>
+            ga('create', '<%= htmlWebpackPlugin.options.googleAnalytics.trackingId%>', 'auto');
+            <% } else { throw new Error("html-webpack-template requires googleAnalytics.trackingId config"); }%>
+        <% if (htmlWebpackPlugin.options.googleAnalytics.pageViewOnLoad) { %>
+            ga('send', 'pageview');
+        <% } %>
+        </script>
+        <% } %>
+        <div id="root">
+            <style>
+                .loader-container{
+                    width: 30%; min-height: 215px;
+                    position: absolute; top: 50%; left: 50%; z-index: 1;
+                    transform:translate(-50%, -50%);
+                    -ms-transform:translate(-50%, -50%);
+                    -moz-transform:translate(-50%, -50%);
+                    -webkit-transform:translate(-50%, -50%);
+                    -o-transform:translate(-50%, -50%);
+                    margin: 0 auto; display: inline-block; text-align: center; vertical-align: top;
+                    background: #ffffff; border-radius: 5px; box-shadow: 0px 0px 30px 1px #ececec inset;
+                }
+                .loader {
+                    position: absolute; top: 50%; left: 50%; z-index: 1;
+                    transform:translate(-50%, -50%);
+                    -ms-transform:translate(-50%, -50%);
+                    -moz-transform:translate(-50%, -50%);
+                    -webkit-transform:translate(-50%, -50%);
+                    -o-transform:translate(-50%, -50%);
+                    width: 60px; height: 60px; border-radius: 50%;
+                    display: inline-block; vertical-align: middle;
+                }
+                .loader-outter{
+                    position: absolute; z-index: 1; width: 100%; height: 100%; 
+                    border: 4px solid #f50057; border-left-color: transparent; border-bottom: 0;border-radius: 50%;
+                    -webkit-animation: loader-1-outter 1s cubic-bezier(.42, .61, .58, .41) infinite;
+                    animation: loader-1-outter 1s cubic-bezier(.42, .61, .58, .41) infinite;
+                }
+                .loader-inner {
+                    position: absolute; width: 40px; height: 40px; left: calc(50% - 20px);top: calc(50% - 20px);
+                    border: 4px solid #f50057; border-radius: 50%;
+                    border-right: 0; border-top-color: transparent;
+                    -webkit-animation: loader-1-inner 1s cubic-bezier(.42, .61, .58, .41) infinite;
+                    animation: loader-1-inner 1s cubic-bezier(.42, .61, .58, .41) infinite;
+                }
+                @-webkit-keyframes loader-1-outter {
+                    0% {
+                        -webkit-transform: rotate(0deg);
+                        transform: rotate(0deg);
+                    }
+                    100% {
+                        -webkit-transform: rotate(360deg);
+                        transform: rotate(360deg);
+                    }
+                }
+                @keyframes loader-1-outter {
+                    0% {
+                        -webkit-transform: rotate(0deg);
+                        transform: rotate(0deg);
+                    }
+                    100% {
+                        -webkit-transform: rotate(360deg);
+                        transform: rotate(360deg);
+                    }
+                }
+                @-webkit-keyframes loader-1-inner {
+                    0% {
+                        -webkit-transform: rotate(0deg);
+                        transform: rotate(0deg);
+                    }
+                    100% {
+                        -webkit-transform: rotate(-360deg);
+                        transform: rotate(-360deg);
+                    }
+                }
+                @keyframes loader-1-inner {
+                    0% {
+                        -webkit-transform: rotate(0deg);
+                        transform: rotate(0deg);
+                    }
+                    100% {
+                        -webkit-transform: rotate(-360deg);
+                        transform: rotate(-360deg);
+                    }
+                }
+            </style>
+            <div class="loader-container">
+                <div class="loader">
+                    <div class="loader-outter"></div>
+                    <div class="loader-inner"></div>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

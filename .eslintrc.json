@@ -1,0 +1,38 @@
+{
+  "root": true,
+  "parser": "babel-eslint",
+  "env": {
+    "browser": true,
+    "node": true,
+    "es6": true,
+    "amd": true,
+    "commonjs": true,
+    "worker": true,
+    "serviceworker": true,
+    "webextensions": true
+  },
+  "parserOptions": {
+    "ecmaFeatures": {
+      "ecmaVersion": 8,
+      "sourceType": "module",
+      "jsx": true
+    }
+  },
+  "plugins": [
+    "react"
+  ],
+  "extends": [
+    "eslint:recommended",
+    "plugin:react/recommended"
+  ],
+  "rules": {
+    "no-console": [1],
+    "no-unused-vars": [1],
+    "react/prop-types": [1],
+    "accessor-pairs": [1],
+    "block-scoped-var": [1],
+    "eqeqeq": [1],
+    "no-var": [1],
+    "indent": [2, 4, {"SwitchCase": 1}]
+  }
+}
