@@ -13,7 +13,7 @@
 ## 例子
 ```javascript
 <ReactEcharts
-	option={option}// option 为原生的 option 数据格式
-	style={{ width: '100%', height: 500}}
+    option={option}// option 为原生的 option 数据格式
+    style={{ width: '100%', height: 500}}
 />
 ```
