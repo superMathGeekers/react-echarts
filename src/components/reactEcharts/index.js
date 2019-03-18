@@ -26,6 +26,7 @@ class ReactEcharts extends React.Component {
   componentDidMount() {
     this.initChart(this.props.option);
     window.addEventListener('resize', this.addEchartsResize);
+    document.addEventListener('echartsForceUpdate', this.echartsForceUpdate);
   }
 
   componentDidUpdate(prevProps) {
@@ -41,7 +42,9 @@ class ReactEcharts extends React.Component {
       this.chart.resize();
     }
   }
-
+  echartsForceUpdate = () => {
+    this.forceUpdate();
+  }
   addEchartsResize = () => {
     _.debounce(() => {
       if (this.chart) {
@@ -85,6 +88,7 @@ class ReactEcharts extends React.Component {
     }
 
     window.removeEventListener('resize', this.addEchartsResize);
+    document.removeEventListener('echartsForceUpdate', this.echartsForceUpdate);
   }
 
   render() {
